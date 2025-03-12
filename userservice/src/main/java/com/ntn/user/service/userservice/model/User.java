@@ -15,7 +15,7 @@ public class User {
     private String userName;
     private String email;
     private String about;
-    private List<UserRating> ratings;
+    private List<Rating> ratings;
 
 
     public String getUserId() {
@@ -50,11 +50,11 @@ public class User {
         this.about = about;
     }
 
-    public List<UserRating> getRatings() {
+    public List<Rating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(List<UserRating> ratings) {
+    public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
 }

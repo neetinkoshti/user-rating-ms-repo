@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/hotels")
+@RequestMapping("/api/hotels")
 public class HotelController {
 
      @Autowired
      private HotelService hotelService;
+
+    @GetMapping("/test")
+    public String test() {
+        return "Hotel Service is up and running";
+    }
 
      @GetMapping("/allHotels")
      public ResponseEntity<List<Hotel>> getAllHotels() {
@@ -23,7 +28,7 @@ public class HotelController {
          return new ResponseEntity<>(hotels, HttpStatus.OK);
      }
 
-     @GetMapping("hotelById/{id}")
+     @GetMapping("/{id}")
      public ResponseEntity<Hotel> getHotelById(@PathVariable("id") String id) {
          Hotel hotel = hotelService.getHotel(id);
          return new ResponseEntity<>(hotel, HttpStatus.OK);

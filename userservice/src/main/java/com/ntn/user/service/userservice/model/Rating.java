@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserRating {
+public class Rating {
 
     private String ratingId;
     private String userId;

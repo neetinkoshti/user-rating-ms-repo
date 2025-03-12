@@ -1,6 +1,7 @@
 package com.ntn.user.service.userservice.controller;
 
 import com.ntn.user.service.userservice.model.User;
+import com.ntn.user.service.userservice.service.UserService;
 import com.ntn.user.service.userservice.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,23 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
     @GetMapping("/test")
     public String test() {
         return "User Service is up and running";
     }
 
-    @GetMapping("/allusers")
+    @GetMapping("/allUsers")
     public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers() , HttpStatus.OK);
     }
 
-    @GetMapping("/userById/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<User> getUser(@PathVariable("userId") String userId) {
         return new ResponseEntity<>(userService.getUser(userId) , HttpStatus.OK);
     }
