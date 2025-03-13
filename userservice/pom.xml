@@ -87,6 +87,13 @@
 		</dependency>
 		<!-- End Eureka discovery client dependencies -->
 
+		<!-- Start Spring Cloud openfeign Client dependencies -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<!-- End Spring Cloud openfeign Client dependencies -->
+
 	</dependencies>
 
 	<!-- Start Eureka discovery client dependencies -->

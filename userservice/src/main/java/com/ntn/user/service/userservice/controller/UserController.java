@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUser(@PathVariable("userId") String userId) {
-        return new ResponseEntity<>(userService.getUser(userId) , HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserUsingFeign(userId) , HttpStatus.OK);
     }
 
     @PostMapping("/createUser")

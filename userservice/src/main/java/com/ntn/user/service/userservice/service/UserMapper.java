@@ -1,6 +1,5 @@
 package com.ntn.user.service.userservice.service;
 
-import com.ntn.user.service.userservice.entity.RatingEntity;
 import com.ntn.user.service.userservice.entity.UserEntity;
 import com.ntn.user.service.userservice.model.Rating;
 import com.ntn.user.service.userservice.model.User;
@@ -15,7 +14,7 @@ public interface UserMapper {
     UserEntity userToUserEntity(User user);
     User userEntityToUser(UserEntity userEntity);
 
-    RatingEntity userRatingToRatingEntity(Rating rating);
+   /* RatingEntity userRatingToRatingEntity(Rating rating);
     Rating RatingEntityToUserRating(RatingEntity  ratingEntity);
-
+*/
 }

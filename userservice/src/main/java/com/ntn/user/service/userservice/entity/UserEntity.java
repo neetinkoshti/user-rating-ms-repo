@@ -27,9 +27,6 @@ public class UserEntity {
     @Column(name = "about")
     private String about;
 
-    @Transient
-    private List<RatingEntity> ratings;
-
     public String getUserId() {
         return userId;
     }
@@ -62,11 +59,4 @@ public class UserEntity {
         this.about = about;
     }
 
-    public List<RatingEntity> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<RatingEntity> ratings) {
-        this.ratings = ratings;
-    }
 }
