@@ -1,0 +1,4 @@
+spring:
+  application:
+    name: external-config-github-dev-profile
+
