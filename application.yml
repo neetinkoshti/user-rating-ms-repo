@@ -1,7 +1,3 @@
-spring:
-  application:
-    name: external-config-github-default-profile
-
 eureka:
     client:
         register-with-eureka: true
