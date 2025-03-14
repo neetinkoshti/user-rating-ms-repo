@@ -20,13 +20,16 @@ spring:
           predicates:
             - Path=/api/hotels/**
 
+  config:
+    import: configserver:http://localhost:8084
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
-    prefer-ip-address: true
+#    Eureka server configuration fetched from config server now, hence commented below
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost
+#    prefer-ip-address: true

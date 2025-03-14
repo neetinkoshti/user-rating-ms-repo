@@ -82,6 +82,13 @@
 		</dependency>
 		<!-- End Eureka discovery client dependencies -->
 
+		<!-- Start Spring config client dependency -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<!-- End Spring config client dependency -->
+
 	</dependencies>
 
 	<!-- Start Eureka discovery client dependencies -->

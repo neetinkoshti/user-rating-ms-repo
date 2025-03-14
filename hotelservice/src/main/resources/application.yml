@@ -13,12 +13,16 @@ spring:
       ddl-auto: update
     show-sql: true
 
-eureka:
-    client:
-        register-with-eureka: true
-        fetch-registry: true
-        service-url:
-           defaultZone: http://localhost:8761/eureka/
-    instance:
-        hostname: localhost
-        prefer-ip-address: true
+  config:
+    import: configserver:http://localhost:8084
+
+#    Eureka server configuration fetched from config server now, hence commented below
+#eureka:
+#    client:
+#        register-with-eureka: true
+#        fetch-registry: true
+#        service-url:
+#           defaultZone: http://localhost:8761/eureka/
+#    instance:
+#        hostname: localhost
+#        prefer-ip-address: true
