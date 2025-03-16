@@ -2,17 +2,22 @@ package com.ntn.user.service.userservice.controller;
 
 import com.ntn.user.service.userservice.model.User;
 import com.ntn.user.service.userservice.service.UserService;
-import com.ntn.user.service.userservice.service.UserServiceImpl;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+
+    Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     UserService userService;
@@ -28,8 +33,24 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
+    @CircuitBreaker(name = "ratingCB", fallbackMethod = "ratingHotelFallback")
     public ResponseEntity<User> getUser(@PathVariable("userId") String userId) {
         return new ResponseEntity<>(userService.getUserUsingFeign(userId) , HttpStatus.OK);
+    }
+
+
+    public ResponseEntity<User> ratingHotelFallback(String userId, RuntimeException e) {
+
+        logger.info("ratingHotelFallback method called {} :",e.getMessage());
+
+        User dummyUser = User.builder()
+                .userName("dummyName")
+                .email("dummyEmail")
+                .about("dummyAbout")
+                .userId("dummyUserId")
+                .build();
+
+        return new ResponseEntity<>(dummyUser , HttpStatus.OK);
     }
 
     @PostMapping("/createUser")
