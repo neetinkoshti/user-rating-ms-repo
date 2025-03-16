@@ -3,6 +3,7 @@ package com.ntn.user.service.userservice.controller;
 import com.ntn.user.service.userservice.model.User;
 import com.ntn.user.service.userservice.service.UserService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.List;
 public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    private static int  RETRY_COUNT = 0;
 
     @Autowired
     UserService userService;
@@ -38,6 +41,15 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserUsingFeign(userId) , HttpStatus.OK);
     }
 
+    @GetMapping("/retry/{userId}")
+    @Retry(name = "ratingHotelRetry" , fallbackMethod = "ratingHotelFallback")
+    public ResponseEntity<User> getUserRetry(@PathVariable("userId") String userId) {
+
+        RETRY_COUNT++;
+        logger.info("Retry count : {}",RETRY_COUNT);
+
+        return new ResponseEntity<>(userService.getUserUsingFeign(userId) , HttpStatus.OK);
+    }
 
     public ResponseEntity<User> ratingHotelFallback(String userId, RuntimeException e) {
 
