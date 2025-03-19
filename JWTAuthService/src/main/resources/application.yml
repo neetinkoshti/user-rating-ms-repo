@@ -1,0 +1,19 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: Auth-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices
+    username: root
+    password: NTN@lmbmysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  config:
+    import: configserver:http://localhost:8084
