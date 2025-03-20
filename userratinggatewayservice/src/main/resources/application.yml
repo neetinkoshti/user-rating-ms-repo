@@ -11,14 +11,23 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/users/**
+          filters:
+            - JwtAuthenticationFilter
+
         - id: RATING-SERVICE
           uri: lb://RATING-SERVICE
           predicates:
             - Path=/api/ratings/**
+
         - id: HOTEL-SERVICE
           uri: lb://HOTEL-SERVICE
           predicates:
             - Path=/api/hotels/**
+
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
 
   config:
     import: configserver:http://localhost:8084
